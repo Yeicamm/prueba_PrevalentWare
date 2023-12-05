@@ -1,12 +1,12 @@
 package com.prueba.prevalentware.entity;
 
 import com.prueba.prevalentware.ENUM.Enum_RoleName;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import jakarta.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Role")
@@ -16,10 +16,10 @@ import java.util.List;
 public class Role {
     @Id
     @Column(name = "id")
-    private Long id;
+    private String id;
     @Column(name = "name", nullable = false)
     @Enumerated(EnumType.STRING)
     private Enum_RoleName roleName;
-    @OneToMany(mappedBy = "rol")
-    private List<User> users;
+    @Column(name = "createdAt")
+    private Timestamp createdAt;
 }
