@@ -3,6 +3,7 @@ package com.prueba.prevalentware.controller;
 import com.prueba.prevalentware.entity.User;
 import com.prueba.prevalentware.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

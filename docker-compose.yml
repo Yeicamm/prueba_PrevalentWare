@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  prueba_prevalentware:
+    container_name: prueba_prevalentware
+    image: pb-java-app:1.0.0
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - java_db
+  java_db:
+    container_name: java_db
+    image: postgres:12
+    ports:
+      - 5432:5432
