@@ -1,11 +1,9 @@
 package com.prueba.prevalentware.controller;
 
-import com.prueba.prevalentware.config.config.Exepcion;
 import com.prueba.prevalentware.constante.Mensaje;
 import com.prueba.prevalentware.entity.User;
 import com.prueba.prevalentware.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -94,6 +92,15 @@ public class UserController {
         try {
             List<Object> objects = userRepository.findTypePais();
             return new ResponseEntity<>(objects,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(Mensaje.MENSAJE_ERROR, HttpStatus.NOT_FOUND);
+        }
+    }
+    @GetMapping("/admin")
+    public ResponseEntity<?> getAdmin(){
+        try {
+            String string = userRepository.findUser();
+            return new ResponseEntity<>(string,HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(Mensaje.MENSAJE_ERROR, HttpStatus.NOT_FOUND);
         }

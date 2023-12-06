@@ -1,6 +1,8 @@
 package com.prueba.prevalentware.repository;
 
+import com.prueba.prevalentware.ENUM.Enum_RoleName;
 import com.prueba.prevalentware.entity.Country;
+import com.prueba.prevalentware.entity.Session;
 import com.prueba.prevalentware.entity.User;
 import com.prueba.prevalentware.entity.UserMonitoring;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -85,4 +87,42 @@ public interface UserRepository extends JpaRepository<User,String> {
             "ORDER BY total_usos DESC\n" +
             "LIMIT 3; ", nativeQuery = true)
     List<Object> findTypePais();
+
+    @Query(value = "SELECT r.name FROM \"User\" u\n" +
+            "    INNER JOIN\n" +
+            "    public.\"Session\" S on u.id = S.\"userId\"\n" +
+            "inner join \"Role\"r ON u.\"roleId\" = r.id\n" +
+            "where u.id = '54ab6c1d-4a94-4740-831c-f801739e19f8'\n" +
+            "and s.\"sessionToken\"='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9." +
+            "eyJpc3MiOiJQcmV2YWxlbnR3YXJlIiwiaWF0IjoxNjkyOTEwNDcwLCJleHAiOjE3MjQ0NDY0" +
+            "NzAsImF1ZCI6Ind3dy5wcmV2YWxlbnR3YXJlLmNvbSIsInN1YiI6ImpvaG4uaGVybmFuZGV6QHRlc3QuY29tIi" +
+            "wiR2l2ZW5OYW1lIjoiSmhvbiIsIlN1cm5hbWUiOiJIZXJuYW5kZXoiLCJFbWFpbCI6ImpvaG4uaGVybmFuZGV6QHRlc3" +
+            "QuY29tIiwiUm9sZSI6ImNsbHBuMWRzZzAwMDAzODdlNnhxamRtdGQifQ.VWo5YWAyGa3klFDVQUo73xzFqkjR6DCEDskwZh3NpAY';", nativeQuery = true)
+    String findAdmin();
+
+    @Query(value = "SELECT r.name FROM \"User\" u\n" +
+            "    INNER JOIN\n" +
+            "    public.\"Session\" S on u.id = S.\"userId\"\n" +
+            "inner join \"Role\"r ON u.\"roleId\" = r.id\n" +
+            "where u.id = '4fe5f76e-bfe2-4f40-9121-fb08bac113cc'\n" +
+            "and s.\"sessionToken\"='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9." +
+            "eyJpc3MiOiJQcmV2YWxlbnR3YXJlIiwiaWF0IjoxNjkyOTEwNDcwLCJleHAiOjE3Mj" +
+            "Q0NDY0NzAsImF1ZCI6Ind3dy5wcmV2YWxlbnR3YXJlLmNvbSIsInN1YiI6ImpvaG4ubGVlQHR" +
+            "lc3QuY29tIiwiR2l2ZW5OYW1lIjoiSm9obiIsIlN1cm5hbWUiOiJMZWUiLCJFbWFpbCI6ImpvaG4ubG" +
+            "VlQHRlc3QuY29tIiwiUm9sZSI6ImNsbHBuMWg0ZTAwMDEzODdlY290amp0ZDkifQ.KlqtsePojPiQsx3mM3zi_" +
+            "jv-wCcboSLKkbVNGsfgVkA';", nativeQuery = true)
+    String findManager();
+
+    @Query(value = "SELECT r.name FROM \"User\" u\n" +
+            "    INNER JOIN\n" +
+            "    public.\"Session\" S on u.id = S.\"userId\"\n" +
+            "inner join \"Role\"r ON u.\"roleId\" = r.id\n" +
+            "where u.id = '6d3f63cb-4355-42e1-a611-a9406c66ddeb'\n" +
+            "and s.\"sessionToken\"='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9." +
+            "eyJpc3MiOiJQcmV2YWxlbnR3YXJlIiwiaWF0IjoxNjkyOTEwNDcwLCJleHAiOjE3MjQ" +
+            "0NDY0NzAsImF1ZCI6Ind3dy5wcmV2YWxlbnR3YXJlLmNvbSIsInN1YiI6ImpvaG4uamFja3N" +
+            "vbkB0ZXN0LmNvbSIsIkdpdmVuTmFtZSI6IkpvaG4iLCJTdXJuYW1lIjoiSmFja3NvbiIsIkVtYWlsIjo" +
+            "iam9obi5qYWNrc29uQHRlc3QuY29tIiwiUm9sZSI6ImNsbHBuMW1mcDAwMDIzODdlZXVkZW9ybmQifQ.wPxeeE" +
+            "mQP1KUnKP_wPgqDtKK7dc-33xvhFe9pmxg14c';", nativeQuery = true)
+    String findUser();
 }
