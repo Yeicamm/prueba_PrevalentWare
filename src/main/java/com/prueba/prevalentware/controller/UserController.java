@@ -1,9 +1,13 @@
 package com.prueba.prevalentware.controller;
 
+import com.prueba.prevalentware.config.config.Exepcion;
+import com.prueba.prevalentware.constante.Mensaje;
 import com.prueba.prevalentware.entity.User;
 import com.prueba.prevalentware.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,22 +24,37 @@ public class UserController {
      * Obtener todos los usuarios (users): Un endpoint que devuelva la información de todos los usuarios
      **/
     @GetMapping("/users")
-    public List<User> getAllUser() {
-        return userRepository.findAllUsers();
+    public ResponseEntity<?> getAllUser() {
+        try {
+            List<User> users = userRepository.findAllUsers();
+            return new ResponseEntity<>(users,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(Mensaje.MENSAJE_ERROR, HttpStatus.NOT_FOUND);
+        }
     }
     /**
      * Obtener un usuario por correo electrónico: Un endpoint que devuelva la información de un usuario específico, identificado por su correo electrónico.
     **/
     @GetMapping("/users/{email}")
-    public List<User> getUserByEmail(@PathVariable String email){
-        return userRepository.findUserByEmail(email);
+    public ResponseEntity<?> getUserByEmail(@PathVariable String email){
+        try {
+            List<User> users = userRepository.findUserByEmail(email);
+            return new ResponseEntity<>(users,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(Mensaje.MENSAJE_ERROR, HttpStatus.NOT_FOUND);
+        }
     }
     /**
      * Obtener todos los países (Countries): Este endpoint solo estará disponible para usuarios Admin o Manager, y devolverá información de todos los países.
      **/
     @GetMapping("/countries")
-    public List<Object> getAllCountry(){
-        return userRepository.findAllountry();
+    public ResponseEntity<?> getAllCountry(){
+        try {
+            List<Object> objects = userRepository.findAllountry();
+            return new ResponseEntity<>(objects,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(Mensaje.MENSAJE_ERROR, HttpStatus.NOT_FOUND);
+        }
     }
     /**
      * Obtener UserMonitoring de un usuario en un rango de tiempo: Este endpoint requerirá el correo
@@ -43,8 +62,13 @@ public class UserController {
      * UserMonitoring.
     **/
     @GetMapping("/UserMonitoring/{email}")
-    public List<Object> getAllUserMonitoring(@PathVariable String email){
-        return userRepository.findUserMonitoringByRanchTime(email);
+    public ResponseEntity<?> getAllUserMonitoring(@PathVariable String email){
+        try {
+            List<Object> objects = userRepository.findUserMonitoringByRanchTime(email);
+            return new ResponseEntity<>(objects,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(Mensaje.MENSAJE_ERROR, HttpStatus.NOT_FOUND);
+        }
     }
     /**
      * Obtener los tres usuarios con más registros en UserMonitoring en un rango de tiempo específico:
@@ -52,8 +76,13 @@ public class UserController {
      * de búsqueda.
      **/
     @GetMapping("/users/three")
-    public List<Object> getThreeUsers(){
-        return userRepository.findthreeUser();
+    public ResponseEntity<?> getThreeUsers(){
+        try {
+            List<Object> objects = userRepository.findthreeUser();
+            return new ResponseEntity<>(objects,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(Mensaje.MENSAJE_ERROR, HttpStatus.NOT_FOUND);
+        }
     }
     /**
      * Obtener los principales usuarios por tipo de uso en un país específico en un rango de tiempo: Este
@@ -61,7 +90,12 @@ public class UserController {
      * share), el ID del país y el rango de fechas para la búsqueda.
      **/
     @GetMapping("/users/type")
-    public List<Object> getUserType(){
-        return userRepository.findTypePais();
+    public ResponseEntity<?> getUserType(){
+        try {
+            List<Object> objects = userRepository.findTypePais();
+            return new ResponseEntity<>(objects,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(Mensaje.MENSAJE_ERROR, HttpStatus.NOT_FOUND);
+        }
     }
 }
