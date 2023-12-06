@@ -24,7 +24,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     }
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder().title("USER")
-                .description("API GET USER")
+                .description("API PRUEBA PREVALENTWARE")
                 .contact(new Contact("Cristian Rojas", "","ccrojas-2021a@corhuila.edu.co"))
                 .license("apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")

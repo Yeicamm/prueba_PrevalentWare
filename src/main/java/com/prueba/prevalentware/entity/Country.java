@@ -17,8 +17,8 @@ public class Country {
     @Id
     @Column(name = "id")
     private String id;
-    @Column(name = "name", nullable = false)
-    private String countryName;
+    @Column(name = "name" )
+    private String name;
     @Column(name = "createdAt")
     private Timestamp createdAt;
     @Column(name = "updatedAt")

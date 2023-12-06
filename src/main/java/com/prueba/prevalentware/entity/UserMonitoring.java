@@ -25,5 +25,5 @@ public class UserMonitoring {
     @JoinColumn(name = "userId")
     private User user;
     @Column(name = "createdAt")
-    private Timestamp timestamp;
+    private Timestamp createdAt;
 }
